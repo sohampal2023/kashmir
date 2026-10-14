@@ -65,15 +65,15 @@
       </section>
 
       <section id="page-create" class="section admin-only">
-        <div class="pagehead"><div><div class="eyebrow">Administration</div><h2>Create a trip assignment</h2><p>Admin chooses the traveller and controller by email.</p></div><span class="tag"><span class="dot green"></span>Admin only</span></div>
+        <div class="pagehead"><div><div class="eyebrow">Administration</div><h2>Create a trip assignment</h2><p>Traveller and controller are fixed to the approved accounts.</p></div><span class="tag"><span class="dot green"></span>Admin only</span></div>
         <div class="twocol">
           <div class="panel">
-            <div class="panelhead"><div><h3>New trip</h3><div class="panel-sub">Assign people before monitoring begins</div></div></div>
+            <div class="panelhead"><div><h3>New trip</h3><div class="panel-sub">Fixed assignments: traveller and control room</div></div></div>
             <form id="createTripForm">
               <div class="fieldgrid">
                 <div class="field full"><label for="newTripName">Trip name / reference</label><input id="newTripName" required maxlength="100" placeholder="Kashmir trip · October"></div>
-                <div class="field"><label for="newTravellerEmail">Traveller email</label><input id="newTravellerEmail" required type="email" placeholder="traveller@example.com"></div>
-                <div class="field"><label for="newControllerEmail">Controller email</label><input id="newControllerEmail" required type="email" placeholder="controller@example.com"></div>
+                <div class="field"><label for="newTravellerEmail">Traveller email</label><input id="newTravellerEmail" required type="email" value="soham@study.com" readonly></div>
+                <div class="field"><label for="newControllerEmail">Controller email</label><input id="newControllerEmail" required type="email" value="priyanjali@study.com" readonly></div>
                 <div class="field"><label for="startDate">Start date</label><input id="startDate" type="date"></div>
                 <div class="field"><label for="endDate">Expected return date</label><input id="endDate" type="date"></div>
                 <div class="field full"><label for="emergencyEmail">Additional emergency contact email (optional)</label><input id="emergencyEmail" type="email" placeholder="trusted-contact@example.com"></div>
@@ -142,6 +142,8 @@ const firebaseConfig = {
   appId: "1:337204334808:web:9d0d36bed2fbae9b8147ad"
 };
 const ADMIN_EMAIL = "admin@admin.com";
+const FIXED_TRAVELLER_EMAIL = "soham@study.com";
+const FIXED_CONTROLLER_EMAIL = "priyanjali@study.com";
 const EMAIL_API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 const CHECKIN_MS = 60 * 60 * 1000;
 const MISSES_BEFORE_ALERT = 3;
@@ -345,7 +347,9 @@ function renderMyTrip(){
 $("createTripForm").addEventListener("submit",async e=>{
   e.preventDefault();
   if(!isAdmin())return setBox("createStatus","Admin access required.","err");
-  const tripName=$("newTripName").value.trim(),travellerEmail=$("newTravellerEmail").value.trim().toLowerCase(),controllerEmail=$("newControllerEmail").value.trim().toLowerCase(),emergencyEmail=$("emergencyEmail").value.trim().toLowerCase();
+  const tripName=$("newTripName").value.trim(),travellerEmail=FIXED_TRAVELLER_EMAIL,controllerEmail=FIXED_CONTROLLER_EMAIL,emergencyEmail=$("emergencyEmail").value.trim().toLowerCase();
+  $("newTravellerEmail").value=FIXED_TRAVELLER_EMAIL;
+  $("newControllerEmail").value=FIXED_CONTROLLER_EMAIL;
   if(!validEmail(travellerEmail)||!validEmail(controllerEmail))return setBox("createStatus","Enter valid traveller and controller email addresses.","err");
   if(travellerEmail===controllerEmail)return setBox("createStatus","Traveller and controller must be different accounts.","err");
   if(emergencyEmail&&!validEmail(emergencyEmail))return setBox("createStatus","Emergency contact email is invalid.","err");

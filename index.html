@@ -1,41 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071426"><title>TravelSafe Kashmir</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10243a">
+<title>TravelSafe Kashmir</title>
 <style>
-:root{--bg:#071426;--panel:#0e2035;--line:#29415d;--text:#eff6ff;--muted:#a5b8cd;--blue:#42aaff;--green:#42d392;--red:#ff6577;--amber:#ffd166}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,sans-serif}header{padding:18px max(18px,calc((100% - 1200px)/2));border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:850;font-size:23px}.brand span{color:var(--green)}main{max-width:1200px;margin:22px auto;padding:0 16px}.notice{padding:13px;border:1px solid #806626;background:#332b16;color:#ffe8a3;border-radius:12px;margin-bottom:16px}.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px;margin-bottom:16px;min-width:0}.panel h2{font-size:16px;margin:0 0 12px}.field{min-width:0;flex:1;background:#071426;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:11px}.row{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0}.btn{border:0;border-radius:9px;padding:11px 13px;font-weight:750;background:var(--blue);color:#061526;cursor:pointer}.btn.green{background:var(--green)}.btn.red{background:var(--red)}.btn.gold{background:var(--amber)}.btn.secondary{background:#203852;color:var(--text);border:1px solid #395775}.btn:disabled{opacity:.4;cursor:not-allowed}#map{height:350px;border-radius:10px}.muted{color:var(--muted)}.small{font-size:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{border:1px solid var(--line);background:#08182a;padding:12px;border-radius:10px;overflow-wrap:anywhere}.stat label{display:block;font-size:12px;color:var(--muted)}.stat b{font-size:16px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}video{width:100%;max-height:280px;background:#000;border-radius:10px}.event{padding:9px;border:1px solid var(--line);border-radius:9px;margin:7px 0;font-size:12px;overflow-wrap:anywhere}footer{max-width:1200px;margin:auto;padding:0 16px 28px;color:var(--muted);font-size:12px}@media(max-width:800px){.grid{grid-template-columns:1fr}}@media(max-width:420px){.actions,.stats{grid-template-columns:1fr}.btn{width:100%}}
-</style></head>
+:root{--navy:#10243a;--blue:#1769aa;--pale:#eef4fa;--ink:#172536;--muted:#5d6c7c;--red:#b42318;--green:#16794b;--border:#d8e1eb}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:var(--navy);color:#fff;padding:22px max(18px,calc((100% - 1000px)/2))}
+header h1{margin:0;font-size:1.65rem}header p{margin:5px 0 0;color:#d7e5f2}
+main{max-width:1000px;margin:22px auto;padding:0 16px 40px}.notice{border:1px solid #e9c46a;background:#fff8e5;padding:13px 15px;border-radius:10px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 3px 12px #142c4610}
+.card h2{font-size:1.1rem;margin:0 0 12px}.full{grid-column:1/-1}
+label{display:block;font-size:.92rem;font-weight:650;margin:10px 0 5px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #bdcbd9;border-radius:8px;background:white;color:var(--ink);font:inherit}
+button{border:0;border-radius:8px;padding:11px 14px;background:var(--blue);color:white;font:600 .95rem inherit;cursor:pointer;margin:5px 5px 5px 0}
+button.secondary{background:#e8eff7;color:#18334d}button.danger{background:var(--red)}button.success{background:var(--green)}button:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap}.status{padding:11px 12px;border-radius:8px;background:var(--pale);white-space:pre-wrap;overflow-wrap:anywhere}.muted,.small{color:var(--muted)}.small{font-size:.86rem}.pill{display:inline-block;padding:3px 9px;border-radius:20px;background:#e8eff7;font-size:.82rem}
+hr{border:0;border-top:1px solid var(--border);margin:16px 0}.hidden{display:none!important}a{color:#145da0}video{width:100%;max-height:280px;background:#111;border-radius:10px}.maplink{overflow-wrap:anywhere}
+footer{max-width:1000px;padding:0 16px 30px;margin:auto;color:var(--muted);font-size:.85rem}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}header h1{font-size:1.4rem}}
+</style>
+</head>
 <body>
-<header><div><div class="brand">Travel<span>Safe</span> Kashmir</div><div class="muted small">Consent-based trip safety sharing</div></div><div id="status" class="muted small">Not signed in</div></header>
+<header>
+  <h1>TravelSafe Kashmir</h1>
+  <p>Consent-based travel check-ins, shared location, and safety alerts</p>
+</header>
 <main>
-<div class="notice"><b>Important:</b> this website cannot reliably track GPS after a phone is locked or the browser is closed. For that, use a native mobile app with explicit always-location permission and a visible ongoing notification. Camera sharing below starts only when the traveller presses the button and can be stopped at any time.</div>
-<section class="panel"><h2>Account & trip</h2><div class="row"><input id="email" class="field" type="email" placeholder="Email"><input id="password" class="field" type="password" placeholder="Password"></div><div class="row"><button class="btn" id="signup">Create account</button><button class="btn secondary" id="login">Sign in</button><button class="btn secondary" id="logout" disabled>Sign out</button></div><div class="row"><input id="trip" class="field" placeholder="Trip invitation code"><button class="btn green" id="join" disabled>Join trip</button></div><div id="msg" class="muted small" aria-live="polite">Configure Firebase before using.</div></section>
-<div class="grid"><div>
-<section class="panel"><h2>Shared GPS location</h2><div id="map"></div><div class="row"><span id="coords" class="muted small">No location received</span><a id="maplink" target="_blank" rel="noopener" hidden>Open map</a></div><div class="stats"><div class="stat"><label>Last location update</label><b id="updated">—</b></div><div class="stat"><label>Accuracy</label><b id="accuracy">—</b></div><div class="stat"><label>Check-in status</label><b id="checkin">—</b></div><div class="stat"><label>Missed check-in alert</label><b id="alert">—</b></div></div><div class="row"><button id="startGps" class="btn green" disabled>Start sharing GPS</button><button id="stopGps" class="btn red" disabled>Stop sharing GPS</button></div><div class="actions"><button id="safe" class="btn gold" disabled>I'm safe</button><button id="sos" class="btn red" disabled>Send SOS</button></div><p class="small muted">Keep this page open while sharing. The browser may pause updates in the background.</p></section>
-<section class="panel"><h2>Safety activity</h2><div id="events"><div class="event muted">No events yet.</div></div></section>
-</div><div>
-<section class="panel"><h2>Live video (opt-in)</h2><p class="small muted">For the traveller: press Start camera and share the displayed session code with the trusted viewer. The viewer enters that code and presses Connect. Both devices must keep this page open. Camera/microphone permission is requested visibly; no automatic or hidden activation.</p><video id="local" autoplay muted playsinline></video><p class="small muted">Remote video</p><video id="remote" autoplay playsinline></video><div class="row"><button id="startCamera" class="btn green" disabled>Start camera</button><button id="stopCamera" class="btn red" disabled>Stop camera</button></div><div class="row"><input id="session" class="field" placeholder="Video session code"><button id="connectVideo" class="btn secondary" disabled>Connect as viewer</button></div><p id="videoMsg" class="small muted">Video is off.</p></section>
-<section class="panel"><h2>Trip controls</h2><label class="small muted" for="interval">Check-in interval (minutes)</label><div class="row"><input id="interval" class="field" type="number" min="5" max="240" value="30"><button id="setSchedule" class="btn secondary" disabled>Set schedule</button></div><p class="small muted">The backend checks missed check-ins every 5 minutes and records an alert. Add a trusted contact notification provider (email/SMS/push) to send alerts outside this dashboard. Alerts are not emergency dispatch.</p><div class="event">Trip owner and traveller must each sign in. Membership is tied to Firebase Authentication UIDs, not just knowledge of a trip code.</div></section>
-</div></div>
-<section class="panel"><h2>Kashmir emergency & travel help</h2>
-<div class="stats">
-  <div class="stat"><label>India emergency response</label><b><a href="tel:112" style="color:#42aaff">112</a></b></div>
-  <div class="stat"><label>J&K Police toll-free numbers listed by J&K Police</label><b><a href="tel:1090" style="color:#42aaff">1090</a> / <a href="tel:100" style="color:#42aaff">100</a></b></div>
-  <div class="stat"><label>Tourist Police Station, TRC (24 hours)</label><b><a href="tel:01942477224" style="color:#42aaff">0194-2477224</a></b></div>
-  <div class="stat"><label>Tourism Enforcement contact</label><b><a href="tel:+919419036278" style="color:#42aaff">+91-9419036278</a></b></div>
-</div>
-<p class="small muted">For immediate danger, call 112. Verify local contacts before travel. J&K Police publishes the tourist and police contact details on its official website.</p>
-<p class="small"><a href="https://www.jkpolice.gov.in/Safety-Tips-for-Tourists" target="_blank" rel="noopener" style="color:#42aaff">Official J&K Police tourist safety information</a> · <a href="https://jkpolice.gov.in/Contact-Info" target="_blank" rel="noopener" style="color:#42aaff">Police contact information</a></p>
-</section>
-</main><footer>Delete the trip when travel ends. Deletion removes application records, but cannot erase screenshots, notification copies, browser history, provider logs, backups, or data another participant has saved.</footer>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <div class="notice"><strong>Safety note:</strong> This website is not an emergency dispatch service. For immediate danger in India, call <strong>112</strong>. Location sharing works only after permission and may stop when the browser/device is suspended.</div>
+
+  <section class="grid">
+    <div class="card">
+      <h2>1. Account</h2>
+      <label for="email">Email address</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+      <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="At least 6 characters">
+      <div class="row">
+        <button id="signupBtn">Create account</button><button id="loginBtn" class="secondary">Sign in</button><button id="logoutBtn" class="secondary hidden">Sign out</button>
+      </div>
+      <div id="authStatus" class="status" role="status">Not signed in.</div>
+      <p class="small">Each person should use their own account. Do not share passwords.</p>
+    </div>
+
+    <div class="card">
+      <h2>2. Trip and access</h2>
+      <label for="role">Your role</label>
+      <select id="role"><option value="traveller">Traveller</option><option value="controller">Controller / trusted contact</option></select>
+      <label for="tripName">Trip name</label><input id="tripName" value="Kashmir trip" maxlength="100">
+      <label for="tripId">Trip code (shared privately)</label><input id="tripId" placeholder="Enter a trip code" maxlength="40">
+      <div class="row">
+        <button id="joinTripBtn">Join / open trip</button><button id="leaveTripBtn" class="secondary">Leave trip view</button>
+      </div>
+      <div id="tripStatus" class="status">Sign in, then enter the trip code.</div>
+      <p class="small">A trip code is an identifier, not a secure invitation by itself. Firebase database rules must restrict access to authorised users.</p>
+    </div>
+
+    <div class="card">
+      <h2>3. Check-in</h2>
+      <p>Expected check-in interval: <strong>1 hour</strong>.</p>
+      <p>First alert after <strong>3 missed check-ins</strong>. Serious escalation after another <strong>30 minutes</strong> without a check-in. Repeated escalation: <strong>every hour</strong>.</p>
+      <div class="row"><button id="checkinBtn" class="success" disabled>I'm safe · Check in</button><button id="manualAlertBtn" class="danger" disabled>Send help alert</button></div>
+      <div id="checkinStatus" class="status">Join a trip to enable check-ins.</div>
+      <p class="small">A real missed-check-in watchdog must run on a trusted server or scheduled backend. This page alone cannot reliably run alerts if it is closed.</p>
+    </div>
+
+    <div class="card">
+      <h2>4. Location sharing</h2>
+      <p class="small">Location is shared only when the traveller chooses to start it. Stop it whenever you want.</p>
+      <div class="row"><button id="startLocationBtn" disabled>Share my location</button><button id="stopLocationBtn" class="secondary" disabled>Stop location sharing</button></div>
+      <div id="locationStatus" class="status">Location sharing is off.</div>
+      <p id="mapLink" class="maplink"></p>
+    </div>
+
+    <div class="card">
+      <h2>5. Optional camera preview</h2>
+      <p class="small">Camera access is explicit and local preview only. This page does not transmit video to the controller.</p>
+      <div class="row"><button id="startCameraBtn" disabled>Start camera preview</button><button id="stopCameraBtn" class="secondary" disabled>Stop camera</button></div>
+      <video id="cameraPreview" autoplay playsinline muted class="hidden"></video>
+      <div id="cameraStatus" class="status">Camera is off.</div>
+    </div>
+
+    <div class="card">
+      <h2>6. Quiet hours</h2>
+      <p class="small">Quiet hours are a display preference only in this website. A server-side watchdog must independently enforce a sleep schedule if alerts are to pause reliably.</p>
+      <label for="quietStart">Quiet hours start</label><input id="quietStart" type="time" value="23:00">
+      <label for="quietEnd">Resume alerts at</label><input id="quietEnd" type="time" value="07:00">
+      <button id="saveQuietBtn" class="secondary">Save on this device</button>
+      <div id="quietStatus" class="status">Default quiet hours: 11:00 PM to 7:00 AM.</div>
+    </div>
+
+    <div class="card full">
+      <h2>7. Safety contacts</h2>
+      <p><strong>India emergency number:</strong> 112</p>
+      <p><strong>Jammu & Kashmir Police:</strong> verify current local contact details before travel. If there is immediate danger, call 112.</p>
+      <p class="small">Email alerts notify the chosen recipients only. They do not verify danger or automatically dispatch emergency services.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  Privacy: do not use covert tracking. Share trip details and location only with informed, authorised people. A website cannot guarantee that all copies of emails, browser records, logs, or backups are erased.
+</footer>
+
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getDatabase,ref,set,get,update,push,onValue,remove,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {
+  getDatabase, ref, set, update, get, onValue, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
+/* Public Firebase web config. Security must be enforced by Firebase rules. */
 const firebaseConfig = {
   apiKey: "AIzaSyD16NhAUgo3sgag01nZPZGHXjMvAZZ0rDE",
   authDomain: "focus-dashboard-5965a.firebaseapp.com",
@@ -45,28 +121,301 @@ const firebaseConfig = {
   messagingSenderId: "337204334808",
   appId: "1:337204334808:web:9d0d36bed2fbae9b8147ad"
 };
-const configured=!firebaseConfig.apiKey.startsWith("PASTE_")&&!firebaseConfig.projectId.startsWith("PASTE_");
-const $=id=>document.getElementById(id);let auth,db,user=null,tripId=null,watchId=null,stream=null,pc=null,unsubs=[],map,marker,circle;
-map=L.map("map").setView([34.0837,74.7973],8);L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap contributors"}).addTo(map);
-const say=t=>$("msg").textContent=t;
-function event(title,detail=""){let n=document.createElement("div");n.className="event";n.textContent=new Date().toLocaleString()+" · "+title+(detail?" · "+detail:"");if($("events").firstElementChild?.textContent==="No events yet.")$("events").innerHTML="";$("events").prepend(n);while($("events").children.length>12)$("events").lastElementChild.remove()}
-function controls(){const signed=!!user,joined=!!tripId;$("status").textContent=signed?user.email:"Not signed in";$("logout").disabled=!signed;$("join").disabled=!signed;$("startGps").disabled=!joined||!!watchId;$("stopGps").disabled=!watchId;$("safe").disabled=!joined;$("sos").disabled=!joined;$("startCamera").disabled=!joined||!!stream;$("stopCamera").disabled=!stream;$("connectVideo").disabled=!joined}
-if(configured){const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,u=>{user=u;say(u?"Signed in. Join a trip you have been invited to.":"Please sign in.");controls()})}else say("Setup needed: add Firebase web config in index.html and deploy the rules/functions from the README.");
-$("signup").onclick=async()=>{if(!configured)return say("Configure Firebase first.");try{await createUserWithEmailAndPassword(auth,$("email").value,$("password").value);say("Account created.")}catch(e){say(e.message)}};
-$("login").onclick=async()=>{if(!configured)return say("Configure Firebase first.");try{await signInWithEmailAndPassword(auth,$("email").value,$("password").value)}catch(e){say(e.message)}};
-$("logout").onclick=async()=>{stopGps();await stopCamera();unsubs.forEach(f=>f());unsubs=[];tripId=null;await signOut(auth);controls()};
-$("join").onclick=async()=>{try{const code=$("trip").value.trim();if(code.length<12)throw Error("Use the invitation code generated by the trip owner (at least 12 characters).");const snap=await get(ref(db,`tripInvites/${code}`));const inv=snap.val();if(!inv||inv.expiresAt<Date.now())throw Error("Invitation invalid or expired.");const member=await get(ref(db,`trips/${inv.tripId}/members/${user.uid}`));if(!member.exists())throw Error("Your account is not a member of this trip.");tripId=inv.tripId;unsubs.forEach(f=>f());unsubs=[];unsubs.push(onValue(ref(db,`trips/${tripId}/location`),s=>{const l=s.val();if(l)showLoc(l)}));unsubs.push(onValue(ref(db,`trips/${tripId}/checkins/latest`),s=>{const c=s.val();$("checkin").textContent=c?new Date(c.time).toLocaleString():"No check-in yet"}));unsubs.push(onValue(ref(db,`trips/${tripId}/alerts/latest`),s=>{$("alert").textContent=s.val()?.status||"None"}));unsubs.push(onValue(ref(db,`trips/${tripId}/events`),s=>{const vals=Object.values(s.val()||{}).sort((a,b)=>b.time-a.time).slice(0,12);$("events").innerHTML="";vals.forEach(v=>{let n=document.createElement("div");n.className="event";n.textContent=new Date(v.time).toLocaleString()+" · "+v.title;$("events").append(n)})}));controls();say("Joined trip securely.");event("Joined trip")}catch(e){say(e.message)}};
-function showLoc(l){const p=[l.lat,l.lng];if(marker)marker.setLatLng(p);else marker=L.marker(p).addTo(map);if(circle)circle.setLatLng(p).setRadius(l.accuracy||0);else circle=L.circle(p,{radius:l.accuracy||0,color:"#42aaff"}).addTo(map);map.setView(p,Math.max(map.getZoom(),13));$("coords").textContent=`${l.lat.toFixed(6)}, ${l.lng.toFixed(6)}`;$("updated").textContent=new Date(l.time).toLocaleString();$("accuracy").textContent=`±${Math.round(l.accuracy||0)} m`;$("maplink").href=`https://maps.google.com/?q=${l.lat},${l.lng}`;$("maplink").hidden=false}
-$("startGps").onclick=()=>{if(!navigator.geolocation)return say("GPS not supported.");if(!tripId)return say("Join a trip first.");say("Choose Allow when the browser asks for location permission.");watchId=navigator.geolocation.watchPosition(async p=>{try{const l={lat:p.coords.latitude,lng:p.coords.longitude,accuracy:p.coords.accuracy,time:Date.now(),by:user.uid};await set(ref(db,`trips/${tripId}/location`),l);await push(ref(db,`trips/${tripId}/events`),{title:"Location updated",time:Date.now()});showLoc(l)}catch(e){say(e.message)}},e=>{say(e.message);watchId=null;controls()},{enableHighAccuracy:true,maximumAge:5000,timeout:20000});controls();event("GPS sharing started")};
-function stopGps(){if(watchId!==null){navigator.geolocation.clearWatch(watchId);watchId=null}controls();if(tripId)event("GPS sharing stopped")}
-$("stopGps").onclick=stopGps;
-$("safe").onclick=async()=>{if(!tripId)return;const now=Date.now();await set(ref(db,`trips/${tripId}/checkins/latest`),{time:now,by:user.uid,status:"safe"});await push(ref(db,`trips/${tripId}/events`),{title:"Safe check-in",time:now});event("Safe check-in sent")};
-$("sos").onclick=async()=>{if(!tripId||!confirm("Send an SOS alert to trip members?"))return;const now=Date.now();await set(ref(db,`trips/${tripId}/alerts/latest`),{time:now,by:user.uid,status:"SOS: contact traveller"});await push(ref(db,`trips/${tripId}/events`),{title:"SOS ALERT",time:now});alert("Alert recorded for trip members. It does not call emergency services.")};
-$("setSchedule").onclick=async()=>{if(!tripId)return;const minutes=Math.max(5,Math.min(240,Number($("interval").value)||30));await set(ref(db,`trips/${tripId}/settings/checkinIntervalMinutes`),minutes);say(`Check-in interval set to ${minutes} minutes.`)};
-let makingOffer=false;
-async function newPeer(){pc=new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"}]});pc.ontrack=e=>{$("remote").srcObject=e.streams[0]};pc.onicecandidate=e=>{if(e.candidate&&tripId&&$("session").value.trim())push(ref(db,`trips/${tripId}/video/${$("session").value.trim()}/candidates/${user.uid}`),e.candidate.toJSON())};return pc}
-$("startCamera").onclick=async()=>{try{if(!tripId)throw Error("Join trip first.");const code=crypto.randomUUID();$("session").value=code;stream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});$("local").srcObject=stream;await newPeer();stream.getTracks().forEach(t=>pc.addTrack(t,stream));const offer=await pc.createOffer();await pc.setLocalDescription(offer);await set(ref(db,`trips/${tripId}/video/${code}/offer`),{type:offer.type,sdp:offer.sdp,by:user.uid,time:Date.now()});unsubs.push(onValue(ref(db,`trips/${tripId}/video/${code}/answer`),async s=>{const a=s.val();if(a&&pc&&pc.signalingState!=="stable")await pc.setRemoteDescription(a)}));unsubs.push(onValue(ref(db,`trips/${tripId}/video/${code}/candidates`),s=>{s.forEach(c=>{if(c.key!==user.uid)onValue(ref(db,`trips/${tripId}/video/${code}/candidates/${c.key}`),cs=>cs.forEach(x=>{if(x.val()&&pc)pc.addIceCandidate(x.val()).catch(()=>{})}),{onlyOnce:true})})}));$("videoMsg").textContent="Camera live. Share this session code only with the intended viewer: "+code;controls()}catch(e){$("videoMsg").textContent=e.message;await stopCamera()}};
-$("connectVideo").onclick=async()=>{try{const code=$("session").value.trim();if(!tripId||!code)throw Error("Join trip and enter the session code.");const offerSnap=await get(ref(db,`trips/${tripId}/video/${code}/offer`));const offer=offerSnap.val();if(!offer)throw Error("No offer found. Ask the traveller to start the camera.");await newPeer();await pc.setRemoteDescription(offer);const answer=await pc.createAnswer();await pc.setLocalDescription(answer);await set(ref(db,`trips/${tripId}/video/${code}/answer`),{type:answer.type,sdp:answer.sdp,by:user.uid});unsubs.push(onValue(ref(db,`trips/${tripId}/video/${code}/candidates`),s=>s.forEach(c=>{if(c.key!==user.uid)c.forEach(x=>{if(x.val()&&pc)pc.addIceCandidate(x.val()).catch(()=>{})})})));$("videoMsg").textContent="Connecting to traveller video. Keep both pages open."}catch(e){$("videoMsg").textContent=e.message}};
-async function stopCamera(){if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;if(pc){pc.close();pc=null}$("local").srcObject=null;$("remote").srcObject=null;if(tripId&&$("session").value)await remove(ref(db,`trips/${tripId}/video/${$("session").value}`)).catch(()=>{});$("videoMsg").textContent="Camera and video session stopped.";controls()}
-$("stopCamera").onclick=stopCamera;
-</script></body></html>
+
+/*
+ * Set this to your deployed Apps Script email endpoint.
+ * Do not put private credentials in this file.
+ * The endpoint must enforce recipient restrictions/authentication server-side.
+ */
+const EMAIL_API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+let currentUser = null;
+let activeTripId = null;
+let tripUnsubscribe = null;
+let locationWatchId = null;
+let cameraStream = null;
+let lastPosition = null;
+
+const $ = id => document.getElementById(id);
+const setStatus = (id, text) => { $(id).textContent = text; };
+const safeTripId = value => value.trim().replace(/[.#$[\]/]/g, "_").slice(0, 40);
+const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+async function emailSend(to, subject, body) {
+  if (!EMAIL_API_URL.startsWith("https://script.google.com/")) {
+    throw new Error("Apps Script email URL has not been configured.");
+  }
+  // no-cors prevents reading the response. It does not prove delivery.
+  await fetch(EMAIL_API_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: new URLSearchParams({ to, subject, body })
+  });
+}
+
+async function sendTripEmails(subject, body, trip) {
+  const recipients = [...new Set([
+    trip.controllerEmail || "",
+    trip.travellerEmail || ""
+  ].filter(validEmail))];
+  for (const recipient of recipients) await emailSend(recipient, subject, body);
+}
+
+$("signupBtn").addEventListener("click", async () => {
+  try {
+    const email = $("email").value.trim();
+    const password = $("password").value;
+    await createUserWithEmailAndPassword(auth, email, password);
+    setStatus("authStatus", "Account created and signed in.");
+  } catch (e) { setStatus("authStatus", e.message); }
+});
+
+$("loginBtn").addEventListener("click", async () => {
+  try {
+    await signInWithEmailAndPassword(auth, $("email").value.trim(), $("password").value);
+    setStatus("authStatus", "Signed in.");
+  } catch (e) { setStatus("authStatus", e.message); }
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+  stopLocation();
+  stopCamera();
+  await signOut(auth);
+});
+
+onAuthStateChanged(auth, user => {
+  currentUser = user;
+  $("logoutBtn").classList.toggle("hidden", !user);
+  ["joinTripBtn"].forEach(id => $(id).disabled = !user);
+  ["checkinBtn", "manualAlertBtn", "startLocationBtn", "startCameraBtn"]
+    .forEach(id => $(id).disabled = !user || !activeTripId);
+  setStatus("authStatus", user ? "Signed in as " + user.email : "Not signed in.");
+});
+
+$("joinTripBtn").addEventListener("click", async () => {
+  if (!currentUser) return setStatus("tripStatus", "Sign in first.");
+  const tripId = safeTripId($("tripId").value);
+  const role = $("role").value;
+  if (!tripId) return setStatus("tripStatus", "Enter the trip code.");
+  try {
+    const tripRef = ref(db, "travelSafeTrips/" + tripId);
+    const snapshot = await get(tripRef);
+    let trip = snapshot.val();
+
+    if (!trip) {
+      if (role !== "traveller") {
+        return setStatus("tripStatus", "Trip not found. The traveller must create it first.");
+      }
+      trip = {
+        tripName: $("tripName").value.trim() || "Kashmir trip",
+        ownerUid: currentUser.uid,
+        travellerUid: currentUser.uid,
+        travellerEmail: currentUser.email,
+        controllerUid: "",
+        controllerEmail: "",
+        createdAt: Date.now(),
+        active: true,
+        lastCheckinAt: Date.now(),
+        missedCheckins: 0,
+        firstAlertAt: 0,
+        seriousAlertAt: 0,
+        nextRepeatAt: 0,
+        locationSharing: false,
+        location: null
+      };
+      await set(tripRef, trip);
+    } else {
+      if (!trip.active) return setStatus("tripStatus", "This trip is closed.");
+      if (role === "controller") {
+        if (trip.controllerUid && trip.controllerUid !== currentUser.uid) {
+          return setStatus("tripStatus", "A different controller is already assigned.");
+        }
+        await update(tripRef, {
+          controllerUid: currentUser.uid,
+          controllerEmail: currentUser.email
+        });
+      } else if (trip.travellerUid !== currentUser.uid) {
+        return setStatus("tripStatus", "Only the trip's traveller account can use the traveller role.");
+      }
+    }
+
+    activeTripId = tripId;
+    if (tripUnsubscribe) tripUnsubscribe();
+    tripUnsubscribe = onValue(tripRef, snap => {
+      const value = snap.val();
+      if (!value) return;
+      setStatus("tripStatus",
+        "Trip: " + (value.tripName || tripId) +
+        "\nStatus: " + (value.active ? "Active" : "Closed") +
+        "\nTraveller: " + (value.travellerEmail || "Not set") +
+        "\nController: " + (value.controllerEmail || "Not set") +
+        "\nLast check-in: " + (value.lastCheckinAt ? new Date(value.lastCheckinAt).toLocaleString() : "None") +
+        "\nLocation sharing: " + (value.locationSharing ? "On" : "Off"));
+      if (value.location && value.location.lat && value.location.lng) {
+        const url = `https://maps.google.com/?q=${value.location.lat},${value.location.lng}`;
+        $("mapLink").innerHTML = "";
+        const a = document.createElement("a");
+        a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+        a.textContent = "Open last shared location in Google Maps";
+        $("mapLink").appendChild(a);
+      }
+      updateButtons();
+    });
+    updateButtons();
+    setStatus("tripStatus", "Trip opened. Waiting for shared trip data.");
+  } catch (e) {
+    setStatus("tripStatus", "Could not open trip: " + e.message +
+      "\nCheck Firebase Authentication, Realtime Database rules, and network access.");
+  }
+});
+
+function updateButtons() {
+  const enabled = !!currentUser && !!activeTripId;
+  ["checkinBtn", "manualAlertBtn", "startLocationBtn", "startCameraBtn"]
+    .forEach(id => $(id).disabled = !enabled);
+  $("stopLocationBtn").disabled = locationWatchId === null;
+  $("stopCameraBtn").disabled = !cameraStream;
+}
+
+$("leaveTripBtn").addEventListener("click", () => {
+  if (tripUnsubscribe) tripUnsubscribe();
+  tripUnsubscribe = null;
+  activeTripId = null;
+  stopLocation();
+  stopCamera();
+  updateButtons();
+  setStatus("tripStatus", "Trip view closed. This does not delete trip records.");
+});
+
+$("checkinBtn").addEventListener("click", async () => {
+  if (!currentUser || !activeTripId) return;
+  try {
+    const tripRef = ref(db, "travelSafeTrips/" + activeTripId);
+    const snap = await get(tripRef);
+    const trip = snap.val();
+    if (!trip || !trip.active) throw new Error("Trip is not active.");
+    if (trip.travellerUid !== currentUser.uid) {
+      throw new Error("Only the traveller can submit this check-in.");
+    }
+    const now = Date.now();
+    await update(tripRef, {
+      lastCheckinAt: now, missedCheckins: 0,
+      firstAlertAt: 0, seriousAlertAt: 0, nextRepeatAt: 0,
+      lastCheckinBy: currentUser.uid
+    });
+    setStatus("checkinStatus", "Check-in saved at " + new Date(now).toLocaleString());
+    await sendTripEmails("TravelSafe: Check-in received",
+      "The traveller submitted a safety check-in for " + (trip.tripName || activeTripId) +
+      " at " + new Date(now).toLocaleString() + ".", trip);
+  } catch (e) { setStatus("checkinStatus", "Check-in error: " + e.message); }
+});
+
+$("manualAlertBtn").addEventListener("click", async () => {
+  if (!currentUser || !activeTripId) return;
+  if (!confirm("Send a help alert email to the controller and traveller?")) return;
+  try {
+    const snap = await get(ref(db, "travelSafeTrips/" + activeTripId));
+    const trip = snap.val();
+    if (!trip) throw new Error("Trip not found.");
+    const message = "MANUAL HELP ALERT for " + (trip.tripName || activeTripId) +
+      "\nRaised by: " + currentUser.email +
+      "\nTime: " + new Date().toLocaleString() +
+      "\nContact the traveller immediately. For immediate danger in India, call 112.";
+    await sendTripEmails("TravelSafe MANUAL HELP ALERT", message, trip);
+    setStatus("checkinStatus", "Help alert request submitted. Verify email delivery.");
+  } catch (e) { setStatus("checkinStatus", "Could not send alert: " + e.message); }
+});
+
+$("startLocationBtn").addEventListener("click", () => {
+  if (!navigator.geolocation) return setStatus("locationStatus", "Geolocation is not supported.");
+  if (!currentUser || !activeTripId) return;
+  if ($("role").value !== "traveller") {
+    return setStatus("locationStatus", "Only the traveller should start location sharing.");
+  }
+  if (!confirm("Share your current location with the authorised controller for this trip?")) return;
+  locationWatchId = navigator.geolocation.watchPosition(async position => {
+    lastPosition = position;
+    const coords = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+      accuracy: position.coords.accuracy,
+      updatedAt: Date.now()
+    };
+    try {
+      await update(ref(db, "travelSafeTrips/" + activeTripId), {
+        locationSharing: true,
+        location: coords
+      });
+      setStatus("locationStatus",
+        "Sharing is on.\nAccuracy: approximately " + Math.round(coords.accuracy) +
+        " metres.\nUpdated: " + new Date(coords.updatedAt).toLocaleString());
+    } catch (e) { setStatus("locationStatus", "Location update failed: " + e.message); }
+  }, error => {
+    setStatus("locationStatus", "Location error: " + error.message);
+    stopLocation();
+  }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 20000 });
+  $("startLocationBtn").disabled = true;
+  $("stopLocationBtn").disabled = false;
+});
+
+async function stopLocation() {
+  if (locationWatchId !== null) navigator.geolocation.clearWatch(locationWatchId);
+  locationWatchId = null;
+  if (currentUser && activeTripId) {
+    try {
+      const snap = await get(ref(db, "travelSafeTrips/" + activeTripId));
+      const trip = snap.val();
+      if (trip && trip.travellerUid === currentUser.uid) {
+        await update(ref(db, "travelSafeTrips/" + activeTripId), {
+          locationSharing: false
+        });
+      }
+    } catch (_) {}
+  }
+  setStatus("locationStatus", "Location sharing is off.");
+  updateButtons();
+}
+$("stopLocationBtn").addEventListener("click", stopLocation);
+
+$("startCameraBtn").addEventListener("click", async () => {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    return setStatus("cameraStatus", "Camera is unavailable in this browser/context.");
+  }
+  if (!confirm("Turn on your camera for a local preview? No video will be sent.")) return;
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    $("cameraPreview").srcObject = cameraStream;
+    $("cameraPreview").classList.remove("hidden");
+    setStatus("cameraStatus", "Camera preview is on locally. No video is transmitted.");
+    updateButtons();
+  } catch (e) { setStatus("cameraStatus", "Camera permission/error: " + e.message); }
+});
+
+function stopCamera() {
+  if (cameraStream) cameraStream.getTracks().forEach(track => track.stop());
+  cameraStream = null;
+  $("cameraPreview").srcObject = null;
+  $("cameraPreview").classList.add("hidden");
+  setStatus("cameraStatus", "Camera is off.");
+  updateButtons();
+}
+$("stopCameraBtn").addEventListener("click", stopCamera);
+
+$("saveQuietBtn").addEventListener("click", () => {
+  localStorage.setItem("travelSafeQuietStart", $("quietStart").value);
+  localStorage.setItem("travelSafeQuietEnd", $("quietEnd").value);
+  setStatus("quietStatus", "Saved on this device: quiet hours " +
+    $("quietStart").value + " to " + $("quietEnd").value +
+    ". This does not pause server-side alerts.");
+});
+
+$("quietStart").value = localStorage.getItem("travelSafeQuietStart") || "23:00";
+$("quietEnd").value = localStorage.getItem("travelSafeQuietEnd") || "07:00";
+</script>
+</body>
+</html>

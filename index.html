@@ -1,454 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1728">
-<title>TravelSafe Kashmir | Control Centre</title>
+<meta name="theme-color" content="#101c2c">
+<title>SafeTrack | Personal Safety</title>
 <style>
-:root{--navy:#0b1728;--navy2:#13243a;--blue:#367bf5;--blue2:#eaf1ff;--ink:#172438;--muted:#65748a;--bg:#f4f7fb;--line:#e0e7f0;--white:#fff;--green:#137a51;--greenbg:#e8f7ef;--amber:#925b08;--amberbg:#fff5dc;--red:#b42318;--redbg:#fff0ee;--shadow:0 12px 30px #12213a0b}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:11px 15px;font-weight:700;background:var(--blue);color:#fff;transition:.15s}button:hover{filter:brightness(.96)}button:disabled{opacity:.45;cursor:not-allowed}.btn-light{background:#eef3fa;color:#243650}.btn-danger{background:var(--red)}.btn-green{background:var(--green)}.btn-outline{background:#fff;color:#263b56;border:1px solid var(--line)}.shell{min-height:100vh}.topbar{height:72px;background:var(--navy);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);gap:16px}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#4d8cff,#1d5bd5);display:grid;place-items:center;font-weight:900}.brand h1{font-size:17px;line-height:1.2;margin:0}.brand small{display:block;color:#9fb0c7;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}.topright{display:flex;align-items:center;gap:12px}.useremail{font-size:12px;color:#c2cede;max-width:240px;overflow-wrap:anywhere}.layout{display:grid;grid-template-columns:235px minmax(0,1fr);max-width:1500px;margin:auto;min-height:calc(100vh - 72px)}aside{background:#fff;border-right:1px solid var(--line);padding:24px 14px}.nav-label{font-size:10px;font-weight:800;color:#94a0b2;letter-spacing:.14em;padding:0 12px;margin:10px 0}.navbtn{width:100%;text-align:left;background:transparent;color:#526176;padding:11px 12px;margin:3px 0;font-weight:650;display:flex;gap:11px;align-items:center;border-radius:9px}.navbtn.active{background:var(--blue2);color:#245fc7}.navicon{width:20px;text-align:center}.aside-note{margin:28px 6px 0;background:#f5f8fc;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12px;color:var(--muted)}main{padding:clamp(18px,3vw,38px);min-width:0}.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px}.eyebrow{font-size:11px;color:#4777cb;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.pagehead h2{font-size:28px;letter-spacing:-.035em;margin:5px 0}.pagehead p{margin:0;color:var(--muted)}.tag{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:30px;font-size:12px;font-weight:750;background:#edf2f8;color:#506076}.dot{width:7px;height:7px;border-radius:50%;background:#8c9bb0}.dot.green{background:#1c9c65}.dot.amber{background:#d08b16}.dot.red{background:#d53c30}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat,.panel{background:var(--white);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat{padding:18px}.statlabel{font-size:12px;color:var(--muted);font-weight:650}.statvalue{font-size:27px;font-weight:800;letter-spacing:-.04em;margin-top:5px}.statfoot{font-size:11px;color:var(--muted);margin-top:4px}.twocol{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:16px}.panel{padding:20px;margin-bottom:16px;min-width:0}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panel h3{font-size:16px;margin:0}.panel-sub{font-size:12px;color:var(--muted);margin-top:3px}.fieldgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{min-width:0}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:750;color:#44546a;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid #d7e0eb;border-radius:9px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}input:focus,select:focus,textarea:focus{border-color:#6a9bff;box-shadow:0 0 0 3px #367bf51a}textarea{min-height:80px;resize:vertical}.formactions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:left;border-bottom:1px solid #edf1f6;padding:12px 10px;font-size:12px}th{color:#8491a4;font-size:10px;text-transform:uppercase;letter-spacing:.08em}td strong{font-size:12px}.empty{text-align:center;padding:28px 14px;color:var(--muted);font-size:13px}.statusbox{border-radius:10px;padding:12px 13px;font-size:13px;background:#f0f5fb;color:#43536a;white-space:pre-wrap;overflow-wrap:anywhere}.statusbox.ok{background:var(--greenbg);color:var(--green)}.statusbox.warn{background:var(--amberbg);color:var(--amber)}.statusbox.err{background:var(--redbg);color:var(--red)}.callout{border:1px solid #f0d18b;background:#fff9e9;border-radius:12px;padding:13px 15px;color:#77500e;font-size:12px;margin-bottom:18px}.hidden{display:none!important}.section{display:none}.section.active{display:block}.metricline{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #edf1f6;padding:11px 0;font-size:13px}.metricline:last-child{border-bottom:0}.pill{font-size:10px;font-weight:800;border-radius:20px;padding:5px 8px;display:inline-block;background:#edf2f8;color:#5c6a7e}.pill.active{background:var(--greenbg);color:var(--green)}.pill.pending{background:var(--amberbg);color:var(--amber)}.pill.alert{background:var(--redbg);color:var(--red)}.loginwrap{max-width:480px;margin:7vh auto;padding:20px}.loginbox{background:white;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow)}.loginbox h2{margin:0 0 5px}.loginbox p{color:var(--muted);font-size:13px;margin:0 0 18px}.footnote{font-size:11px;color:var(--muted);margin-top:14px}.contactgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.contact{background:#f7f9fc;border:1px solid var(--line);border-radius:12px;padding:15px}.contact strong{display:block;font-size:20px}.contact span{font-size:11px;color:var(--muted)}.mobile-menu{display:none}
-@media(max-width:950px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;gap:5px;overflow:auto}.nav-label,.aside-note{display:none}.navbtn{width:auto;white-space:nowrap;margin:0}.twocol{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.topbar{height:auto;min-height:68px;padding:12px 15px;align-items:flex-start}.topright{align-items:flex-end;flex-direction:column;gap:5px}.useremail{max-width:150px}.pagehead{display:block}.pagehead .tag{margin-top:12px}.stats{gap:8px}.stat{padding:13px}.statvalue{font-size:23px}.fieldgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:15px}.contactgrid{grid-template-columns:1fr}.brand h1{font-size:15px}}
+:root{--ink:#18263a;--muted:#68778b;--navy:#101c2c;--blue:#2864dc;--bg:#f3f6fb;--line:#dfe6ef;--green:#18794e;--red:#b42318;--amber:#946200}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif}header{background:var(--navy);color:white;padding:22px max(18px,calc((100% - 1050px)/2))}.brand{display:flex;align-items:center;gap:12px}.logo{height:42px;width:42px;border-radius:12px;background:#2864dc;display:grid;place-items:center;font-weight:900}.brand h1{font-size:20px;margin:0}.brand p{margin:2px 0 0;color:#b8c6d8;font-size:12px}main{max-width:1050px;margin:25px auto;padding:0 16px 35px}.notice{background:#fff7e2;border:1px solid #f0d28c;color:#75510d;padding:13px 15px;border-radius:12px;margin-bottom:17px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:0 5px 18px #16243a08;min-width:0}.card h2{font-size:17px;margin:0 0 13px}.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:750;margin:10px 0 5px;color:#45566d}input,select{width:100%;padding:11px 12px;border:1px solid #cbd6e3;border-radius:9px;background:white;color:var(--ink);font:inherit}button{border:0;border-radius:9px;padding:11px 14px;background:var(--blue);color:white;font-weight:750;cursor:pointer;margin:5px 5px 5px 0}button.secondary{background:#eaf0f8;color:#233954}button.danger{background:var(--red)}button:disabled{opacity:.45;cursor:not-allowed}.row{display:flex;flex-wrap:wrap;gap:5px}.status{padding:12px;border-radius:9px;background:#eff4fa;color:#4d5c71;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}.status.ok{background:#e9f7ef;color:var(--green)}.status.warn{background:#fff5dd;color:var(--amber)}.status.err{background:#fff0ef;color:var(--red)}.muted{color:var(--muted);font-size:13px}.hidden{display:none!important}.metric{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric>div{padding:12px;background:#f6f8fc;border:1px solid #e6ecf4;border-radius:10px;min-width:0}.metric span{display:block;font-size:11px;color:var(--muted)}.metric strong{display:block;font-size:14px;overflow-wrap:anywhere;margin-top:4px}video{width:100%;max-height:340px;background:#101010;border-radius:12px;margin-top:10px}a{color:#205bc7;overflow-wrap:anywhere}.consent{display:flex;gap:9px;align-items:flex-start;font-size:13px;margin:12px 0}.consent input{width:auto;margin-top:4px}footer{max-width:1050px;margin:auto;padding:0 16px 30px;font-size:12px;color:var(--muted)}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.full{grid-column:auto}header{padding:18px}.metric{grid-template-columns:1fr 1fr}.card{padding:15px}}
 </style>
 </head>
 <body>
-<div id="loginView" class="loginwrap">
-  <div class="loginbox">
-    <div class="brand" style="color:#13243a;margin-bottom:24px"><div class="brandmark">TS</div><div><h1>TravelSafe Kashmir</h1><small style="color:#758398">Secure travel monitoring</small></div></div>
-    <h2>Sign in to continue</h2>
-    <p>Admin assigns the traveller and controller. Users cannot select or change their own assigned role.</p>
-    <div class="field"><label for="loginEmail">Email address</label><input id="loginEmail" type="email" autocomplete="username" placeholder="name@example.com"></div>
-    <div class="field" style="margin-top:12px"><label for="loginPassword">Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password"></div>
-    <div class="formactions"><button id="signInBtn">Sign in</button><button id="createAccountBtn" class="btn-light">Create account</button></div>
-    <div id="loginStatus" class="statusbox">Sign in with your assigned email address.</div>
-    <p class="footnote">The admin account must be provisioned in Firebase Authentication. Creating an account does not grant admin access.</p>
+<header><div class="brand"><div class="logo">ST</div><div><h1>SafeTrack</h1><p>Consent-based personal safety and location sharing</p></div></div></header>
+<main>
+  <div class="notice"><strong>Privacy by design:</strong> Location and camera sharing only start when the account holder signs in and explicitly enables them. The camera preview below stays on that device; it is not secretly streamed to anyone. For emergencies in India, call <strong>112</strong>.</div>
+  <div class="grid">
+    <section class="card">
+      <h2>1. Sign in</h2>
+      <label for="email">Account email</label><input id="email" type="email" autocomplete="username" placeholder="soham@study.com">
+      <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Firebase account password">
+      <div class="row"><button id="signIn">Sign in</button><button id="createAccount" class="secondary">Create account</button><button id="signOut" class="secondary hidden">Sign out</button></div>
+      <div id="authStatus" class="status">Sign in to view or share safety information.</div>
+      <p class="muted">Creating an account does not grant permission to view another person's information. Firebase access rules must enforce sharing permissions.</p>
+    </section>
+
+    <section class="card">
+      <h2>2. Sharing permissions</h2>
+      <p class="muted">The tracked account is <strong>soham@study.com</strong>. Soham must sign in on the device being tracked and choose what to share.</p>
+      <label for="viewerEmail">Share with viewer email</label><input id="viewerEmail" type="email" placeholder="Trusted person's email">
+      <label class="consent"><input type="checkbox" id="agreeLocation"><span>I understand my location will be visible to the authorised viewer while sharing is enabled.</span></label>
+      <button id="saveSharing" disabled>Save sharing permission</button>
+      <div id="sharingStatus" class="status">Sign in as Soham to manage sharing permissions.</div>
+    </section>
+
+    <section class="card">
+      <h2>3. Live location</h2>
+      <div class="row"><button id="startLocation" disabled>Start location sharing</button><button id="stopLocation" class="secondary" disabled>Stop sharing</button></div>
+      <div id="locationStatus" class="status">Location sharing is off.</div>
+      <div class="metric" style="margin-top:12px">
+        <div><span>Latitude</span><strong id="lat">—</strong></div>
+        <div><span>Longitude</span><strong id="lng">—</strong></div>
+        <div><span>Accuracy</span><strong id="accuracy">—</strong></div>
+        <div><span>Last update</span><strong id="updated">—</strong></div>
+      </div>
+      <p id="mapLink"></p>
+      <p class="muted">Requires HTTPS and permission from the device user. Updates can stop when the browser is closed, suspended, or loses GPS/network access.</p>
+    </section>
+
+    <section class="card">
+      <h2>4. Camera permission</h2>
+      <p class="muted">Camera access is initiated on the device by the signed-in account holder. This section shows a local preview only; no video is uploaded or sent to a viewer.</p>
+      <label class="consent"><input type="checkbox" id="agreeCamera"><span>I want to turn on my camera for a visible local preview.</span></label>
+      <div class="row"><button id="startCamera" disabled>Start camera</button><button id="stopCamera" class="secondary" disabled>Stop camera</button></div>
+      <video id="preview" autoplay playsinline muted class="hidden"></video>
+      <div id="cameraStatus" class="status">Camera is off.</div>
+    </section>
+
+    <section class="card full">
+      <h2>5. Shared safety information</h2>
+      <p class="muted">Only information that the account holder has chosen to share appears here. Browser APIs do not reliably expose all device parameters, and battery level may not be available.</p>
+      <div class="metric">
+        <div><span>Signed-in account</span><strong id="signedInAs">—</strong></div>
+        <div><span>Sharing role</span><strong id="role">—</strong></div>
+        <div><span>Browser / device</span><strong id="deviceInfo">—</strong></div>
+        <div><span>Network status</span><strong id="networkInfo">—</strong></div>
+      </div>
+      <div class="row" style="margin-top:12px"><button id="refreshShared" class="secondary" disabled>Refresh shared information</button></div>
+      <div id="sharedStatus" class="status">Sign in to load permitted shared information.</div>
+    </section>
   </div>
-</div>
-
-<div id="appView" class="shell hidden">
-  <header class="topbar">
-    <div class="brand"><div class="brandmark">TS</div><div><h1>TravelSafe Kashmir</h1><small>Safety operations platform</small></div></div>
-    <div class="topright"><span id="topRole" class="tag"><span class="dot green"></span> Signed in</span><span id="topEmail" class="useremail"></span><button id="signOutBtn" class="btn-light">Sign out</button></div>
-  </header>
-  <div class="layout">
-    <aside id="sidebar">
-      <div class="nav-label">WORKSPACE</div>
-      <button class="navbtn active" data-page="overview"><span class="navicon">▦</span>Overview</button>
-      <button class="navbtn admin-only" data-page="create"><span class="navicon">＋</span>Create trip</button>
-      <button class="navbtn admin-only" data-page="trips"><span class="navicon">▤</span>Trip assignments</button>
-      <button class="navbtn" data-page="mytrip"><span class="navicon">⌖</span>My trip</button>
-      <button class="navbtn admin-only" data-page="alerts"><span class="navicon">♧</span>Alert centre</button>
-      <div class="aside-note"><strong>Emergency response</strong><br>For immediate danger in India, call 112. Website alerts are not emergency dispatch.</div>
-    </aside>
-    <main>
-      <section id="page-overview" class="section active">
-        <div class="pagehead"><div><div class="eyebrow">Workspace / Overview</div><h2 id="welcomeTitle">Good day</h2><p id="welcomeText">Your assigned safety workspace.</p></div><span class="tag"><span class="dot green"></span><span id="connectionLabel">Connected to Firebase</span></span></div>
-        <div class="callout"><strong>Alert policy:</strong> one-hour check-in interval → 3 missed check-ins → first alert → serious escalation after 30 minutes without a check-in → hourly reminders. A scheduled backend is required for reliable alerts if this page is closed.</div>
-        <div class="stats">
-          <div class="stat"><div class="statlabel">Assigned trips</div><div class="statvalue" id="statTrips">—</div><div class="statfoot">Visible to your account</div></div>
-          <div class="stat"><div class="statlabel">Active trips</div><div class="statvalue" id="statActive">—</div><div class="statfoot">Currently monitoring</div></div>
-          <div class="stat"><div class="statlabel">Open alerts</div><div class="statvalue" id="statAlerts">—</div><div class="statfoot">Require review</div></div>
-          <div class="stat"><div class="statlabel">Your role</div><div class="statvalue" style="font-size:20px" id="statRole">—</div><div class="statfoot">Assigned by admin</div></div>
-        </div>
-        <div class="twocol">
-          <div class="panel"><div class="panelhead"><div><h3 id="primaryPanelTitle">Trip activity</h3><div class="panel-sub">Latest assigned trip records</div></div><span class="pill">LIVE DATA</span></div><div id="overviewTrips" class="empty">Loading trip assignments…</div></div>
-          <div class="panel"><div class="panelhead"><div><h3>System status</h3><div class="panel-sub">Safety and delivery checks</div></div></div>
-            <div class="metricline"><span>Firebase session</span><strong id="firebaseState">Checking…</strong></div>
-            <div class="metricline"><span>Role assignment</span><strong>Admin controlled</strong></div>
-            <div class="metricline"><span>Check-in interval</span><strong>60 minutes</strong></div>
-            <div class="metricline"><span>Escalation delay</span><strong>30 minutes</strong></div>
-            <div class="metricline"><span>Email service</span><strong id="emailState">Not verified</strong></div>
-            <p class="footnote">“Email request accepted” is not proof of delivery. Verify Apps Script execution logs and test inboxes.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="page-create" class="section admin-only">
-        <div class="pagehead"><div><div class="eyebrow">Administration</div><h2>Create a trip assignment</h2><p>Traveller and controller are fixed to the approved accounts.</p></div><span class="tag"><span class="dot green"></span>Admin only</span></div>
-        <div class="twocol">
-          <div class="panel">
-            <div class="panelhead"><div><h3>New trip</h3><div class="panel-sub">Fixed assignments: traveller and control room</div></div></div>
-            <form id="createTripForm">
-              <div class="fieldgrid">
-                <div class="field full"><label for="newTripName">Trip name / reference</label><input id="newTripName" required maxlength="100" placeholder="Kashmir trip · October"></div>
-                <div class="field"><label for="newTravellerEmail">Traveller email</label><input id="newTravellerEmail" required type="email" value="soham@study.com" readonly></div>
-                <div class="field"><label for="newControllerEmail">Controller email</label><input id="newControllerEmail" required type="email" value="priyanjali@study.com" readonly></div>
-                <div class="field"><label for="startDate">Start date</label><input id="startDate" type="date"></div>
-                <div class="field"><label for="endDate">Expected return date</label><input id="endDate" type="date"></div>
-                <div class="field full"><label for="emergencyEmail">Additional emergency contact email (optional)</label><input id="emergencyEmail" type="email" placeholder="trusted-contact@example.com"></div>
-                <div class="field full"><label for="adminNotes">Admin notes (optional)</label><textarea id="adminNotes" placeholder="Travel itinerary reference, agreed check-in details…"></textarea></div>
-              </div>
-              <div class="formactions"><button type="submit">Create assignment</button><button type="reset" class="btn-light">Clear form</button></div>
-            </form>
-            <div id="createStatus" class="statusbox hidden" style="margin-top:12px"></div>
-          </div>
-          <div class="panel"><h3>Assignment workflow</h3>
-            <div class="metricline"><span>1. Create trip</span><strong>Admin</strong></div>
-            <div class="metricline"><span>2. Assign roles</span><strong>Admin</strong></div>
-            <div class="metricline"><span>3. Invite users</span><strong>Email</strong></div>
-            <div class="metricline"><span>4. Accept assignment</span><strong>Each user</strong></div>
-            <div class="metricline"><span>5. Activate monitoring</span><strong>Admin</strong></div>
-            <hr>
-            <div class="statusbox warn">Email delivery requires a configured Apps Script endpoint. This page does not generate secure invitation links by itself. Use a trusted server for invite tokens and permissions before real deployment.</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="page-trips" class="section admin-only">
-        <div class="pagehead"><div><div class="eyebrow">Administration</div><h2>Trip assignments</h2><p>Review assignments and control monitoring state.</p></div><button id="refreshTripsBtn" class="btn-light">Refresh</button></div>
-        <div class="panel"><div class="panelhead"><div><h3>All trip records</h3><div class="panel-sub">Role assignments are set by the admin.</div></div></div><div id="allTripsTable" class="empty">Loading trips…</div></div>
-      </section>
-
-      <section id="page-mytrip" class="section">
-        <div class="pagehead"><div><div class="eyebrow">Assigned workspace</div><h2>My trip</h2><p>Actions are shown according to the role assigned by admin.</p></div></div>
-        <div id="myTripEmpty" class="panel"><div class="empty">No trip assignment found for your signed-in email. Ask the admin to assign this email.</div></div>
-        <div id="myTripContent" class="hidden">
-          <div class="panel"><div class="panelhead"><div><h3 id="myTripName">Assigned trip</h3><div id="myTripDates" class="panel-sub"></div></div><span id="myTripStatus" class="pill">Loading</span></div>
-            <div class="stats" style="margin-top:10px"><div class="stat"><div class="statlabel">Assigned role</div><div class="statvalue" style="font-size:19px" id="myRole">—</div></div><div class="stat"><div class="statlabel">Last check-in</div><div class="statvalue" style="font-size:16px" id="myLastCheckin">—</div></div><div class="stat"><div class="statlabel">Location sharing</div><div class="statvalue" style="font-size:18px" id="myLocationState">Off</div></div><div class="stat"><div class="statlabel">Alert state</div><div class="statvalue" style="font-size:18px" id="myAlertState">Clear</div></div></div>
-            <div class="row" style="display:flex;gap:9px;flex-wrap:wrap"><button id="checkinBtn" class="btn-green">I'm safe · Check in</button><button id="startLocationBtn" class="btn-light">Start location sharing</button><button id="stopLocationBtn" class="btn-light">Stop location sharing</button><button id="helpBtn" class="btn-danger">Send help alert</button><button id="closeTripBtn" class="btn-danger admin-action hidden">Close trip</button></div>
-            <div id="myTripMessage" class="statusbox" style="margin-top:14px">Ready.</div>
-            <div id="locationCard" class="statusbox hidden" style="margin-top:12px"></div>
-          </div>
-          <div class="twocol">
-            <div class="panel"><h3>Assigned people</h3><div class="metricline"><span>Traveller</span><strong id="assignedTraveller">—</strong></div><div class="metricline"><span>Controller</span><strong id="assignedController">—</strong></div><div class="metricline"><span>Emergency contact</span><strong id="assignedEmergency">Not supplied</strong></div></div>
-            <div class="panel"><h3>Check-in policy</h3><div class="metricline"><span>Expected interval</span><strong>Every hour</strong></div><div class="metricline"><span>First alert</span><strong>3 missed check-ins</strong></div><div class="metricline"><span>Serious escalation</span><strong>30 min later</strong></div><div class="metricline"><span>Repeat reminder</span><strong>Every hour</strong></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="page-alerts" class="section admin-only">
-        <div class="pagehead"><div><div class="eyebrow">Safety operations</div><h2>Alert centre</h2><p>Review trips that need attention.</p></div><button id="refreshAlertsBtn" class="btn-light">Refresh</button></div>
-        <div class="panel"><div class="panelhead"><div><h3>Open safety alerts</h3><div class="panel-sub">Based on recorded check-ins and alert state.</div></div></div><div id="alertsTable" class="empty">Loading alerts…</div></div>
-        <div class="callout">Do not wait for an email if you have credible reason to believe someone is in immediate danger. Call 112 in India and provide verified information.</div>
-      </section>
-    </main>
-  </div>
-</div>
+</main>
+<footer>Use only with the informed permission of the person sharing their data. This site does not provide covert tracking, remote camera activation, or emergency-service dispatch.</footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import { getDatabase, ref, set, get, update, onValue, push } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getDatabase,ref,set,get,onValue,update} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
-/* Firebase web config is public by design. Protect data with database rules. */
-const firebaseConfig = {
-  apiKey: "AIzaSyD16NhAUgo3sgag01nZPZGHXjMvAZZ0rDE",
-  authDomain: "focus-dashboard-5965a.firebaseapp.com",
-  databaseURL: "https://focus-dashboard-5965a-default-rtdb.firebaseio.com",
-  projectId: "focus-dashboard-5965a",
-  storageBucket: "focus-dashboard-5965a.firebasestorage.app",
-  messagingSenderId: "337204334808",
-  appId: "1:337204334808:web:9d0d36bed2fbae9b8147ad"
+const firebaseConfig={
+  apiKey:"AIzaSyD16NhAUgo3sgag01nZPZGHXjMvAZZ0rDE",
+  authDomain:"focus-dashboard-5965a.firebaseapp.com",
+  databaseURL:"https://focus-dashboard-5965a-default-rtdb.firebaseio.com",
+  projectId:"focus-dashboard-5965a",
+  storageBucket:"focus-dashboard-5965a.firebasestorage.app",
+  messagingSenderId:"337204334808",
+  appId:"1:337204334808:web:9d0d36bed2fbae9b8147ad"
 };
-const ADMIN_EMAIL = "admin@admin.com";
-const FIXED_TRAVELLER_EMAIL = "soham@study.com";
-const FIXED_CONTROLLER_EMAIL = "priyanjali@study.com";
-const EMAIL_API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
-const CHECKIN_MS = 60 * 60 * 1000;
-const MISSES_BEFORE_ALERT = 3;
-const ESCALATION_MS = 30 * 60 * 1000;
-const REPEAT_MS = 60 * 60 * 1000;
+const TRACKED_EMAIL="soham@study.com";
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app);
+const $=id=>document.getElementById(id);
+let user=null,watchId=null,cameraStream=null,sharedListener=null,sharingViewer="";
+const status=(id,msg,type="")=>{$(id).textContent=msg;$(id).className="status"+(type?" "+type:"");};
+const emailOk=s=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||""));
+const trackedRef=()=>ref(db,"safeTrack/"+encodeURIComponent(TRACKED_EMAIL).replace(/\./g,"%2E"));
+const isTrackedUser=()=>!!user&&user.email.toLowerCase()===TRACKED_EMAIL;
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
-let user = null, role = "unassigned", allTrips = {}, assignedTrips = {}, activeTripKey = null;
-let locationWatch = null, tripListener = null, currentTripListener = null;
-let watchdogInterval = null, emailConfigured = false;
-
-const $ = id => document.getElementById(id);
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const validEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||"").trim());
-const setBox = (id, message, type="") => { const el=$(id); el.textContent=message; el.className="statusbox"+(type?" "+type:""); };
-const dateText = value => value ? new Date(value).toLocaleString() : "No check-in recorded";
-const tripRef = id => ref(db, "travelSafeTrips/" + id);
-const tripKey = () => activeTripKey;
-const isAdmin = () => !!user && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-async function sendEmail(to, subject, body) {
-  if (!EMAIL_API_URL.startsWith("https://script.google.com/")) throw new Error("Configure EMAIL_API_URL in index.html.");
-  // no-cors means the browser cannot verify the result; check Apps Script logs.
-  await fetch(EMAIL_API_URL, {method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},body:new URLSearchParams({to,subject,body})});
+function updateButtons(){
+ const signed=!!user,tracked=isTrackedUser();
+ $("signOut").classList.toggle("hidden",!signed);
+ $("saveSharing").disabled=!tracked;
+ $("startLocation").disabled=!tracked||!$("agreeLocation").checked||!sharingViewer;
+ $("stopLocation").disabled=watchId===null;
+ $("startCamera").disabled=!tracked||!$("agreeCamera").checked;
+ $("stopCamera").disabled=!cameraStream;
+ $("refreshShared").disabled=!signed;
+ $("signedInAs").textContent=user?user.email:"—";
+ $("role").textContent=!user?"—":tracked?"Data owner / traveller":"Viewer (subject to database rules)";
 }
-async function sendTripMail(trip, subject, body) {
-  const recipients=[trip.travellerEmail,trip.controllerEmail,trip.emergencyEmail].filter(validEmail);
-  for(const to of [...new Set(recipients)]) await sendEmail(to,subject,body);
-}
-function auditRecord(action, tripId, detail={}) {
-  if(!user)return;
-  const auditRef=push(ref(db,"travelSafeAudit"));
-  return set(auditRef,{action,tripId:tripId||"",actorUid:user.uid,actorEmail:user.email,at:Date.now(),detail});
-}
+$("agreeLocation").addEventListener("change",updateButtons);
+$("agreeCamera").addEventListener("change",updateButtons);
 
-function showPage(name) {
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-  const section=$("page-"+name); if(section)section.classList.add("active");
-  document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
-}
-document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
-
-$("signInBtn").addEventListener("click", async()=>{
-  try { await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value); }
-  catch(e){setBox("loginStatus",e.message,"err");}
+$("createAccount").addEventListener("click",async()=>{
+ try{await createUserWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);status("authStatus","Account created. Sign in and grant only the permissions you want.","ok");}
+ catch(e){status("authStatus",e.message,"err");}
 });
-$("createAccountBtn").addEventListener("click",async()=>{
-  try {
-    await createUserWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);
-    setBox("loginStatus","Account created. Access and role still depend on an admin assignment.","ok");
-  } catch(e){setBox("loginStatus",e.message,"err");}
+$("signIn").addEventListener("click",async()=>{
+ try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);status("authStatus","Signed in.","ok");}
+ catch(e){status("authStatus",e.message,"err");}
 });
-$("signOutBtn").addEventListener("click",()=>signOut(auth));
-onAuthStateChanged(auth, async current=>{
-  user=current;
-  if(!user){cleanupListeners();$("loginView").classList.remove("hidden");$("appView").classList.add("hidden");return;}
-  $("loginView").classList.add("hidden");$("appView").classList.remove("hidden");
-  $("topEmail").textContent=user.email;
-  role=isAdmin()?"admin":"unassigned";
-  $("topRole").innerHTML='<span class="dot '+(isAdmin()?"green":"amber")+'"></span> '+(isAdmin()?"Administrator":"Verifying assignment");
-  document.querySelectorAll(".admin-only").forEach(el=>el.classList.toggle("hidden",!isAdmin()));
-  $("statRole").textContent=isAdmin()?"Admin":"Checking";
-  $("welcomeTitle").textContent=isAdmin()?"Control room overview":"Your safety workspace";
-  $("welcomeText").textContent=isAdmin()?"Manage trip assignments, users, monitoring and alerts.":"Your access is based on the assignment created by the administrator.";
-  $("firebaseState").textContent="Signed in";
-  $("emailState").textContent=EMAIL_API_URL.startsWith("https://script.google.com/")?"Configured (unverified)":"Needs setup";
-  await loadTrips();
-  startListeners();
+$("signOut").addEventListener("click",async()=>{stopLocation();stopCamera();await signOut(auth);});
+onAuthStateChanged(auth,async u=>{
+ user=u;updateButtons();
+ if(sharedListener){sharedListener();sharedListener=null;}
+ if(!u){status("authStatus","Signed out.");status("sharedStatus","Sign in to load permitted shared information.");return;}
+ status("authStatus","Signed in as "+u.email,"ok");
+ if(isTrackedUser()){
+   status("sharingStatus","You are signed in as the data owner. Enter the exact email of a trusted viewer and save permission.");
+ }else{
+   status("sharingStatus","Signed in as viewer. Shared data is visible only if Firebase rules grant access.");
+ }
+ await loadShared();
 });
 
-function cleanupListeners(){
-  if(tripListener)tripListener(); if(currentTripListener)currentTripListener();
-  tripListener=currentTripListener=null;
-  if(locationWatch!==null)navigator.geolocation?.clearWatch(locationWatch);
-  locationWatch=null;
-  if(watchdogInterval)clearInterval(watchdogInterval);
-  watchdogInterval=null;
-  allTrips={};assignedTrips={};activeTripKey=null;
-}
-async function loadTrips(){
+$("saveSharing").addEventListener("click",async()=>{
+ if(!isTrackedUser())return status("sharingStatus","Only soham@study.com can configure sharing.","err");
+ const viewer=$("viewerEmail").value.trim().toLowerCase();
+ if(!emailOk(viewer)||viewer===TRACKED_EMAIL)return status("sharingStatus","Enter a valid, different viewer email.","err");
+ if(!$("agreeLocation").checked)return status("sharingStatus","Tick the location-sharing consent checkbox first.","warn");
+ try{
+   await update(trackedRef(),{ownerEmail:TRACKED_EMAIL,viewerEmail:viewer,locationSharingConsent:true,consentUpdatedAt:Date.now()});
+   sharingViewer=viewer;updateButtons();
+   status("sharingStatus","Sharing permission saved for "+viewer+". Make sure your Firebase rules enforce this viewer restriction.","ok");
+ }catch(e){status("sharingStatus","Could not save permission: "+e.message+". Check your Firebase rules.","err");}
+});
+
+$("startLocation").addEventListener("click",()=>{
+ if(!isTrackedUser()||!sharingViewer||!$("agreeLocation").checked)return;
+ if(!navigator.geolocation)return status("locationStatus","Geolocation is unavailable in this browser.","err");
+ if(!confirm("Share your current location with "+sharingViewer+"? You can stop sharing at any time."))return;
+ watchId=navigator.geolocation.watchPosition(async p=>{
+  const loc={lat:p.coords.latitude,lng:p.coords.longitude,accuracy:p.coords.accuracy,updatedAt:Date.now()};
   try{
-    const snap=await get(ref(db,"travelSafeTrips"));
-    allTrips=snap.val()||{};
-    deriveAssignments();
-    renderOverview();renderAdminTrips();renderAlerts();renderMyTrip();
-  }catch(e){
-    setBox("loginStatus","Could not read assignments: "+e.message,"err");
-    $("firebaseState").textContent="Permission denied";
-  }
-}
-function deriveAssignments(){
-  assignedTrips={};
-  for(const [id,t] of Object.entries(allTrips)){
-    if(isAdmin() || t.travellerEmail?.toLowerCase()===user.email.toLowerCase() || t.controllerEmail?.toLowerCase()===user.email.toLowerCase()){
-      assignedTrips[id]=t;
-    }
-  }
-  if(activeTripKey&&!assignedTrips[activeTripKey])activeTripKey=null;
-  if(!activeTripKey){
-    const first=Object.entries(assignedTrips).find(([id,t])=>t.active!==false);
-    if(first)activeTripKey=first[0];
-  }
-  role=isAdmin()?"admin":"unassigned";
-  if(!isAdmin()&&activeTripKey){
-    const t=assignedTrips[activeTripKey];
-    role=t.travellerEmail?.toLowerCase()===user.email.toLowerCase()?"traveller":"controller";
-  }
-  $("topRole").innerHTML='<span class="dot '+(role==="unassigned"?"amber":"green")+'"></span> '+esc(role==="admin"?"Administrator":role==="unassigned"?"No assignment":role[0].toUpperCase()+role.slice(1));
-  $("statRole").textContent=role==="unassigned"?"Unassigned":role[0].toUpperCase()+role.slice(1);
-}
-function startListeners(){
-  if(tripListener)tripListener();
-  tripListener=onValue(ref(db,"travelSafeTrips"),snap=>{
-    allTrips=snap.val()||{};deriveAssignments();renderOverview();renderAdminTrips();renderAlerts();renderMyTrip();
-  },err=>{ $("firebaseState").textContent="Database rules blocked access"; });
-  if(watchdogInterval)clearInterval(watchdogInterval);
-  watchdogInterval=setInterval(runVisibleWatchdog,30000);
-}
-function renderOverview(){
-  const list=Object.entries(assignedTrips);
-  $("statTrips").textContent=list.length;
-  $("statActive").textContent=list.filter(([id,t])=>t.active!==false).length;
-  $("statAlerts").textContent=list.filter(([id,t])=>t.alertState==="alert"||t.alertState==="serious").length;
-  $("firebaseState").textContent="Connected";
-  if(!list.length){
-    $("overviewTrips").innerHTML='<div class="empty">'+(isAdmin()?'No trips yet. Use “Create trip assignment” to get started.':'No trip has been assigned to this email. Contact the administrator.')+'</div>';
-    return;
-  }
-  $("overviewTrips").innerHTML='<div class="tablewrap"><table><thead><tr><th>Trip</th><th>Traveller</th><th>Status</th><th>Last check-in</th><th></th></tr></thead><tbody>'+
-    list.map(([id,t])=>`<tr><td><strong>${esc(t.tripName||id)}</strong><br><span class="small">${esc(id)}</span></td><td>${esc(t.travellerEmail||"—")}</td><td><span class="pill ${t.alertState==="serious"?"alert":t.active===false?"":"active"}">${esc(t.alertState==="serious"?"Serious alert":t.active===false?"Closed":t.alertState==="alert"?"Alert":"Active")}</span></td><td>${esc(dateText(t.lastCheckinAt))}</td><td><button class="btn-light" data-open-trip="${esc(id)}">Open</button></td></tr>`).join("")+
-    '</tbody></table></div>';
-  document.querySelectorAll("[data-open-trip]").forEach(b=>b.addEventListener("click",()=>{activeTripKey=b.dataset.openTrip;renderMyTrip();showPage("mytrip");}));
-}
-function renderAdminTrips(){
-  if(!isAdmin())return;
-  const list=Object.entries(allTrips);
-  if(!list.length){$("allTripsTable").innerHTML='<div class="empty">No assignments have been created.</div>';return;}
-  $("allTripsTable").innerHTML='<div class="tablewrap"><table><thead><tr><th>Trip</th><th>Traveller</th><th>Controller</th><th>Status</th><th>Admin actions</th></tr></thead><tbody>'+
-    list.map(([id,t])=>`<tr><td><strong>${esc(t.tripName||id)}</strong><br><span class="small">${esc(id)}</span></td><td>${esc(t.travellerEmail||"—")}</td><td>${esc(t.controllerEmail||"—")}</td><td><span class="pill ${t.active===false?"":"active"}">${t.active===false?"Closed":t.monitoringActive?"Monitoring":"Pending activation"}</span></td><td><button class="btn-light" data-open-trip="${esc(id)}">Details</button> <button class="${t.monitoringActive?"btn-danger":"btn-green"}" data-toggle-trip="${esc(id)}">${t.monitoringActive?"Suspend":"Activate"}</button> <button class="btn-light" data-invite-trip="${esc(id)}">Send assignment email</button></td></tr>`).join("")+
-    '</tbody></table></div>';
-  document.querySelectorAll("[data-open-trip]").forEach(b=>b.addEventListener("click",()=>{activeTripKey=b.dataset.openTrip;renderMyTrip();showPage("mytrip");}));
-  document.querySelectorAll("[data-toggle-trip]").forEach(b=>b.addEventListener("click",async()=>{
-    const id=b.dataset.toggleTrip,t=allTrips[id];if(!t)return;
-    const next=!t.monitoringActive;
-    try{await update(tripRef(id),{monitoringActive:next,updatedAt:Date.now(),updatedBy:user.uid});await auditRecord(next?"monitoring_activated":"monitoring_suspended",id);if(next)await sendTripMail(t,"TravelSafe: Monitoring "+(next?"activated":"suspended"),"Admin has "+(next?"activated":"suspended")+" monitoring for "+t.tripName+".");}
-    catch(e){alert("Could not update trip: "+e.message);}
-  }));
-  document.querySelectorAll("[data-invite-trip]").forEach(b=>b.addEventListener("click",async()=>{
-    const id=b.dataset.inviteTrip,t=allTrips[id];if(!t)return;
-    try{
-      await sendTripMail(t,"TravelSafe Kashmir: Trip assignment","You have been assigned to the following trip.\nTrip: "+t.tripName+"\nRole: "+(user.email.toLowerCase()===t.travellerEmail?.toLowerCase()?"Traveller":"See admin assignment")+"\nPlease sign in using this email address. Contact the admin if this assignment is incorrect.\nTrip reference: "+id);
-      await auditRecord("assignment_email_requested",id);
-      alert("Email requests submitted. Confirm delivery in Apps Script logs.");
-    }catch(e){alert("Email request failed: "+e.message);}
-  }));
-}
-function renderAlerts(){
-  if(!isAdmin())return;
-  const list=Object.entries(allTrips).filter(([id,t])=>t.alertState==="alert"||t.alertState==="serious");
-  $("alertsTable").innerHTML=list.length?'<div class="tablewrap"><table><thead><tr><th>Severity</th><th>Trip</th><th>Traveller</th><th>Last check-in</th><th>Action</th></tr></thead><tbody>'+
-    list.map(([id,t])=>`<tr><td><span class="pill ${t.alertState==="serious"?"alert":"pending"}">${t.alertState==="serious"?"SERIOUS":"ALERT"}</span></td><td>${esc(t.tripName||id)}</td><td>${esc(t.travellerEmail||"—")}</td><td>${esc(dateText(t.lastCheckinAt))}</td><td><button class="btn-light" data-resolve="${esc(id)}">Mark reviewed</button></td></tr>`).join("")+'</tbody></table></div>':'<div class="empty">No open alerts.</div>';
-  document.querySelectorAll("[data-resolve]").forEach(b=>b.addEventListener("click",async()=>{
-    try{await update(tripRef(b.dataset.resolve),{alertState:"clear",alertReviewedAt:Date.now(),alertReviewedBy:user.uid});await auditRecord("alert_reviewed",b.dataset.resolve);}
-    catch(e){alert("Could not update alert: "+e.message);}
-  }));
-}
-function renderMyTrip(){
-  const t=activeTripKey?assignedTrips[activeTripKey]:null;
-  $("myTripEmpty").classList.toggle("hidden",!!t);
-  $("myTripContent").classList.toggle("hidden",!t);
-  if(!t)return;
-  const myRole=isAdmin()?"admin":t.travellerEmail?.toLowerCase()===user.email.toLowerCase()?"traveller":"controller";
-  $("myTripName").textContent=t.tripName||activeTripKey;
-  $("myTripDates").textContent=(t.startDate||"Start date not set")+" → "+(t.endDate||"Return date not set")+" · Reference "+activeTripKey;
-  $("myTripStatus").textContent=t.active===false?"Closed":t.monitoringActive?"Monitoring active":"Monitoring pending";
-  $("myTripStatus").className="pill "+(t.active===false?"":t.monitoringActive?"active":"pending");
-  $("myRole").textContent=myRole[0].toUpperCase()+myRole.slice(1);
-  $("myLastCheckin").textContent=t.lastCheckinAt?new Date(t.lastCheckinAt).toLocaleString():"None";
-  $("myLocationState").textContent=t.locationSharing?"On":"Off";
-  $("myAlertState").textContent=t.alertState==="serious"?"Serious":t.alertState==="alert"?"Alert":"Clear";
-  $("assignedTraveller").textContent=t.travellerEmail||"Not assigned";
-  $("assignedController").textContent=t.controllerEmail||"Not assigned";
-  $("assignedEmergency").textContent=t.emergencyEmail||"Not supplied";
-  $("checkinBtn").classList.toggle("hidden",myRole!=="traveller");
-  $("startLocationBtn").classList.toggle("hidden",myRole!=="traveller");
-  $("stopLocationBtn").classList.toggle("hidden",myRole!=="traveller");
-  $("closeTripBtn").classList.toggle("hidden",!isAdmin());
-  $("helpBtn").classList.toggle("hidden",myRole==="unassigned");
-  const loc=t.location;
-  if(loc&&t.locationSharing){
-    $("locationCard").classList.remove("hidden");
-    $("locationCard").innerHTML="";
-    const text=document.createElement("div");
-    text.textContent="Last shared coordinates: "+loc.lat+", "+loc.lng+" · Accuracy ±"+Math.round(loc.accuracy||0)+" m · "+new Date(loc.updatedAt||0).toLocaleString()+" ";
-    const a=document.createElement("a");a.href=`https://maps.google.com/?q=${loc.lat},${loc.lng}`;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Open map";
-    $("locationCard").append(text,a);
-  }else{$("locationCard").classList.add("hidden");}
-}
-$("createTripForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!isAdmin())return setBox("createStatus","Admin access required.","err");
-  const tripName=$("newTripName").value.trim(),travellerEmail=FIXED_TRAVELLER_EMAIL,controllerEmail=FIXED_CONTROLLER_EMAIL,emergencyEmail=$("emergencyEmail").value.trim().toLowerCase();
-  $("newTravellerEmail").value=FIXED_TRAVELLER_EMAIL;
-  $("newControllerEmail").value=FIXED_CONTROLLER_EMAIL;
-  if(!validEmail(travellerEmail)||!validEmail(controllerEmail))return setBox("createStatus","Enter valid traveller and controller email addresses.","err");
-  if(travellerEmail===controllerEmail)return setBox("createStatus","Traveller and controller must be different accounts.","err");
-  if(emergencyEmail&&!validEmail(emergencyEmail))return setBox("createStatus","Emergency contact email is invalid.","err");
-  const id=push(ref(db,"travelSafeTrips")).key;
-  const trip={
-    tripName,travellerEmail,controllerEmail,emergencyEmail:emergencyEmail||"",
-    startDate:$("startDate").value||"",endDate:$("endDate").value||"",
-    adminNotes:$("adminNotes").value.trim(),createdAt:Date.now(),createdByUid:user.uid,createdByEmail:user.email,
-    active:true,monitoringActive:false,lastCheckinAt:0,missedCheckins:0,firstAlertAt:0,seriousAlertAt:0,nextRepeatAt:0,alertState:"clear",locationSharing:false,location:null
-  };
-  try{
-    await set(tripRef(id),trip);
-    await auditRecord("trip_created",id,{tripName,travellerEmail,controllerEmail});
-    setBox("createStatus","Trip assignment created.\nTrip reference: "+id+"\nTraveller: "+travellerEmail+"\nController: "+controllerEmail+"\n\nSend assignment emails from Trip assignments. Monitoring is not active until admin activates it.","ok");
-    $("createTripForm").reset();
-    await loadTrips();
-    activeTripKey=id;renderMyTrip();
-  }catch(err){setBox("createStatus","Could not create trip: "+err.message+"\nCheck Firebase Realtime Database rules.","err");}
+   await update(trackedRef(),{location:loc,locationSharing:true,ownerEmail:TRACKED_EMAIL,viewerEmail:sharingViewer});
+   $("lat").textContent=loc.lat.toFixed(6);$("lng").textContent=loc.lng.toFixed(6);
+   $("accuracy").textContent="±"+Math.round(loc.accuracy)+" m";$("updated").textContent=new Date(loc.updatedAt).toLocaleString();
+   $("mapLink").innerHTML="";
+   const a=document.createElement("a");a.href=`https://maps.google.com/?q=${loc.lat},${loc.lng}`;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Open current location in Google Maps";$("mapLink").appendChild(a);
+   status("locationStatus","Location is being shared with "+sharingViewer+".","ok");
+  }catch(e){status("locationStatus","Could not save location: "+e.message,"err");}
+ },e=>status("locationStatus","Location error: "+e.message,"err"),{enableHighAccuracy:true,maximumAge:5000,timeout:20000});
+ updateButtons();$("stopLocation").disabled=false;
 });
-$("refreshTripsBtn").addEventListener("click",loadTrips);
-$("refreshAlertsBtn").addEventListener("click",loadTrips);
+function stopLocation(){
+ if(watchId!==null&&navigator.geolocation)navigator.geolocation.clearWatch(watchId);
+ watchId=null;
+ if(isTrackedUser())update(trackedRef(),{locationSharing:false}).catch(()=>{});
+ status("locationStatus","Location sharing is off.");updateButtons();
+}
+$("stopLocation").addEventListener("click",stopLocation);
 
-$("checkinBtn").addEventListener("click",async()=>{
-  const id=tripKey(),t=assignedTrips[id];if(!t||!user)return;
-  if(t.travellerEmail?.toLowerCase()!==user.email.toLowerCase())return setBox("myTripMessage","Only the assigned traveller can check in.","err");
-  if(!t.monitoringActive)return setBox("myTripMessage","Monitoring has not been activated by admin.","warn");
-  const now=Date.now();
-  try{
-    await update(tripRef(id),{lastCheckinAt:now,missedCheckins:0,firstAlertAt:0,seriousAlertAt:0,nextRepeatAt:0,alertState:"clear",lastCheckinBy:user.uid});
-    await auditRecord("checkin",id);
-    await sendTripMail(t,"TravelSafe: Check-in received","Traveller "+user.email+" checked in for "+t.tripName+" at "+new Date(now).toLocaleString()+". The missed-check-in timer has reset.");
-    setBox("myTripMessage","Check-in recorded at "+new Date(now).toLocaleString()+". Email requests submitted; verify delivery in Apps Script logs.","ok");
-  }catch(err){setBox("myTripMessage","Check-in failed: "+err.message,"err");}
+$("startCamera").addEventListener("click",async()=>{
+ if(!isTrackedUser()||!$("agreeCamera").checked)return;
+ if(!navigator.mediaDevices?.getUserMedia)return status("cameraStatus","Camera access requires a supported browser and secure HTTPS page.","err");
+ if(!confirm("Turn on the camera for a visible local preview on this device? No video will be transmitted."))return;
+ try{
+  cameraStream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});
+  $("preview").srcObject=cameraStream;$("preview").classList.remove("hidden");
+  status("cameraStatus","Camera is active locally. No video is being sent to anyone.","ok");updateButtons();
+ }catch(e){status("cameraStatus","Camera permission/error: "+e.message,"err");}
 });
-$("helpBtn").addEventListener("click",async()=>{
-  const id=tripKey(),t=assignedTrips[id];if(!t)return;
-  if(!confirm("Send a help alert to the assigned contacts? For immediate danger, call 112 directly."))return;
-  try{
-    await update(tripRef(id),{alertState:"serious",manualAlertAt:Date.now(),manualAlertBy:user.uid});
-    await sendTripMail(t,"SERIOUS TravelSafe help alert","A manual help alert was raised for "+t.tripName+".\nRaised by: "+user.email+"\nTime: "+new Date().toLocaleString()+"\nContact the traveller immediately. If there is immediate danger in India, call 112.");
-    await auditRecord("manual_help_alert",id);
-    setBox("myTripMessage","Help alert request submitted. Contact the person directly as well; email delivery is not guaranteed.","warn");
-  }catch(e){setBox("myTripMessage","Could not submit alert: "+e.message,"err");}
-});
-$("closeTripBtn").addEventListener("click",async()=>{
-  const id=tripKey(),t=assignedTrips[id];if(!isAdmin()||!t)return;
-  if(!confirm("Close this trip? Check-ins and location updates should stop."))return;
-  try{await update(tripRef(id),{active:false,monitoringActive:false,closedAt:Date.now(),closedBy:user.uid,locationSharing:false});await auditRecord("trip_closed",id);setBox("myTripMessage","Trip closed by admin.","ok");}
-  catch(e){setBox("myTripMessage","Could not close trip: "+e.message,"err");}
-});
-$("startLocationBtn").addEventListener("click",()=>{
-  const id=tripKey(),t=assignedTrips[id];
-  if(!t||t.travellerEmail?.toLowerCase()!==user.email.toLowerCase())return setBox("myTripMessage","Only the assigned traveller can share location.","err");
-  if(!t.monitoringActive)return setBox("myTripMessage","Monitoring must be activated first.","warn");
-  if(!navigator.geolocation)return setBox("myTripMessage","Geolocation is not supported by this browser.","err");
-  if(!confirm("Share your live location with your assigned controller and admin? You can stop sharing at any time."))return;
-  locationWatch=navigator.geolocation.watchPosition(async p=>{
-    const loc={lat:p.coords.latitude,lng:p.coords.longitude,accuracy:p.coords.accuracy,updatedAt:Date.now()};
-    try{await update(tripRef(id),{locationSharing:true,location:loc});setBox("myTripMessage","Location updated at "+new Date(loc.updatedAt).toLocaleString()+". Keep this page open for continued updates.","ok");}
-    catch(e){setBox("myTripMessage","Location save failed: "+e.message,"err");}
-  },e=>setBox("myTripMessage","Location error: "+e.message,"err"),{enableHighAccuracy:true,maximumAge:10000,timeout:20000});
-  $("startLocationBtn").disabled=true;$("stopLocationBtn").disabled=false;
-});
-$("stopLocationBtn").addEventListener("click",async()=>{
-  const id=tripKey(),t=assignedTrips[id];if(locationWatch!==null)navigator.geolocation.clearWatch(locationWatch);locationWatch=null;
-  try{if(t&&t.travellerEmail?.toLowerCase()===user.email.toLowerCase())await update(tripRef(id),{locationSharing:false});setBox("myTripMessage","Location sharing stopped.","ok");}
-  catch(e){setBox("myTripMessage","Could not update sharing state: "+e.message,"err");}
-  $("startLocationBtn").disabled=false;$("stopLocationBtn").disabled=true;
-});
-
-/*
- * Best-effort foreground watchdog only.
- * For dependable alerts with the page closed, implement the same state machine
- * in a trusted scheduled backend (e.g. Cloud Functions + Scheduler).
- */
-async function runVisibleWatchdog(){
-  if(!isAdmin())return;
-  const now=Date.now();
-  for(const [id,t] of Object.entries(allTrips)){
-    if(!t.monitoringActive||t.active===false||!t.lastCheckinAt)continue;
-    const missed=Math.floor((now-t.lastCheckinAt)/CHECKIN_MS);
-    try{
-      if(missed>=MISSES_BEFORE_ALERT&&!t.firstAlertAt){
-        const firstAlertAt=now;
-        await update(tripRef(id),{missedCheckins:missed,firstAlertAt,alertState:"alert"});
-        await sendTripMail(t,"TravelSafe ALERT: 3 check-ins missed","Trip: "+t.tripName+"\nTraveller: "+t.travellerEmail+"\nThree hourly check-ins have been missed.\nLast check-in: "+dateText(t.lastCheckinAt)+"\nPlease contact the traveller and verify their safety.");
-        await auditRecord("first_missed_checkin_alert",id);
-      }else if(t.firstAlertAt&&!t.seriousAlertAt&&now-t.firstAlertAt>=ESCALATION_MS){
-        await update(tripRef(id),{seriousAlertAt:now,nextRepeatAt:now+REPEAT_MS,alertState:"serious"});
-        await sendTripMail(t,"SERIOUS TravelSafe escalation: No check-in response","No check-in was received within 30 minutes after the first alert.\nTrip: "+t.tripName+"\nTraveller: "+t.travellerEmail+"\nLast check-in: "+dateText(t.lastCheckinAt)+"\nCall the traveller and trusted contacts. If there is credible immediate danger in India, call 112.");
-        await auditRecord("serious_escalation",id);
-      }else if(t.seriousAlertAt&&t.nextRepeatAt&&now>=t.nextRepeatAt){
-        await update(tripRef(id),{nextRepeatAt:now+REPEAT_MS});
-        await sendTripMail(t,"TravelSafe serious reminder: No check-in response","Unresolved serious safety alert for "+t.tripName+". Contact the traveller and trusted contacts. If there is credible immediate danger in India, call 112.");
-        await auditRecord("serious_escalation_repeat",id);
-      }
-    }catch(e){console.error("Watchdog error",id,e);}
-  }
+function stopCamera(){
+ if(cameraStream)cameraStream.getTracks().forEach(t=>t.stop());
+ cameraStream=null;$("preview").srcObject=null;$("preview").classList.add("hidden");
+ status("cameraStatus","Camera is off.");updateButtons();
 }
+$("stopCamera").addEventListener("click",stopCamera);
+
+async function loadShared(){
+ if(!user)return;
+ $("deviceInfo").textContent=navigator.userAgent;
+ $("networkInfo").textContent=navigator.onLine?"Browser reports online":"Browser reports offline";
+ if(!isTrackedUser()){
+  // Viewer only reads the shared record. Rules must permit the assigned viewer.
+  try{
+   const snap=await get(trackedRef()),data=snap.val();
+   if(!data){status("sharedStatus","No shared record available, or access is denied.","warn");return;}
+   if(data.viewerEmail?.toLowerCase()!==user.email.toLowerCase()){
+    status("sharedStatus","This account is not the assigned viewer.","err");return;
+   }
+   showShared(data);
+   if(sharedListener)sharedListener();
+   sharedListener=onValue(trackedRef(),s=>{const v=s.val();if(v&&v.viewerEmail?.toLowerCase()===user.email.toLowerCase())showShared(v);},e=>status("sharedStatus","Live update denied: "+e.message,"err"));
+  }catch(e){status("sharedStatus","Could not load shared data: "+e.message,"err");}
+ }else{
+  try{const snap=await get(trackedRef());if(snap.exists())showShared(snap.val());else status("sharedStatus","No shared location has been recorded yet.");}
+  catch(e){status("sharedStatus","Could not load data: "+e.message,"err");}
+ }
+}
+function showShared(data){
+ if(data.location){
+  const l=data.location;
+  $("lat").textContent=Number(l.lat).toFixed(6);$("lng").textContent=Number(l.lng).toFixed(6);
+  $("accuracy").textContent="±"+Math.round(l.accuracy||0)+" m";$("updated").textContent=l.updatedAt?new Date(l.updatedAt).toLocaleString():"—";
+  $("mapLink").innerHTML="";
+  const a=document.createElement("a");a.href=`https://maps.google.com/?q=${l.lat},${l.lng}`;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Open shared location in Google Maps";$("mapLink").appendChild(a);
+  status("sharedStatus","Location sharing: "+(data.locationSharing?"ON":"OFF")+"\nOwner: "+(data.ownerEmail||TRACKED_EMAIL)+"\nViewer: "+(data.viewerEmail||"not configured")+"\nLast location update: "+new Date(l.updatedAt||0).toLocaleString(),data.locationSharing?"ok":"warn");
+ }else status("sharedStatus","No location data has been shared yet.");
+ if(data.viewerEmail)sharingViewer=data.viewerEmail;
+ updateButtons();
+}
+$("refreshShared").addEventListener("click",loadShared);
+window.addEventListener("online",()=>{$("networkInfo").textContent="Browser reports online";});
+window.addEventListener("offline",()=>{$("networkInfo").textContent="Browser reports offline";});
 </script>
 </body>
 </html>
